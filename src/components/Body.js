@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, Dimensions } from 'react-native'
 import Box from './Box'
 
-const Body = ({ display, numbers }) => {
+const Body = ({ display, numbers, onClickBox }) => {
     let [boxSize, setBoxSize] = useState(0);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const Body = ({ display, numbers }) => {
             {
                 numbers.map((number, index) => (
                     <View key={index} style={ styles.boxContainer }>
-                        <Box number={number} style={{ width: boxSize, height: boxSize }}></Box>
+                        <Box number={number} style={{ width: boxSize, height: boxSize }} onClickBox={onClickBox}></Box>
                     </View>
                 ))
             }

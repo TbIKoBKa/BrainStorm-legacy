@@ -1,12 +1,25 @@
-import React from 'react'
-import { StyleSheet, TouchableHighlight } from 'react-native'
+import React, { useEffect, useRef } from 'react'
+import { StyleSheet, TouchableHighlight, Animated } from 'react-native'
 import { BoxText } from './Text'
 
-const Box = ({ number, style=null }) => {
+const AnimatedTouchableHighlight = Animated.createAnimatedComponent(TouchableHighlight)
+
+const Box = ({ number, style=null, onClickBox=() => {} }) => {
+    const scale = useRef(new Animated.Value(0.3)).current
+    
+    useEffect(() => {
+        Animated.timing(scale, {toValue: 1, duration: 150, useNativeDriver: false}).start()
+    })
+
+    const onClick = (number) => {
+        onClickBox(number)
+        scale.setValue(0.3)
+    }
+
     return (
-        <TouchableHighlight style={[styles.box, style]}>
+        <AnimatedTouchableHighlight underlayColor="#ffcc00" style={[styles.box, style, {transform: [{ scale: scale }]}]} onPress={() => {onClick(number)}}>
             <BoxText>{number}</BoxText>
-        </TouchableHighlight>
+        </AnimatedTouchableHighlight>
     )
 }
 

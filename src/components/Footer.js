@@ -5,7 +5,7 @@ import { MyText } from './Text'
 const Footer = ({ result }) => {
     return (
         <View style={styles.footer}>
-            <MyText>{result}</MyText>
+            <MyText>{result.message ? `${result.message}!` : ``}{result.combo > 0 ? ` x${result.combo}` : ``}</MyText>
         </View>
     )
 }
