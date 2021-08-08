@@ -1,11 +1,15 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Box from './Box'
+import PauseButton from '../Pause/PauseButton'
 
-const Header = ({ number }) => {
+import menu from '../../img/menu.png'
+
+const Header = ({ number, setPause }) => {
     return (
         <View style={styles.header}>
             <Box number={number} style={styles.headerBox}/>
+            <PauseButton sourceIcon={menu} setPause={setPause} btnSize={{ width: 50, height: 50 }} />
         </View>
     )
 }
@@ -17,8 +21,8 @@ const styles = StyleSheet.create({
         height: 150
     },
     headerBox: {
-        backgroundColor: '#ffcc00',
-        borderColor: '#cca300',
+        backgroundColor: '#00ace6',
+        borderColor: '#0086b3',
         height: 130,
         width: 130
     }

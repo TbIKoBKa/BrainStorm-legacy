@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Dimensions } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Box from './Box'
 
 const Body = ({ display, numbers, onClickBox }) => {
@@ -18,7 +18,7 @@ const Body = ({ display, numbers, onClickBox }) => {
             {
                 numbers.map((number, index) => (
                     <View key={index} style={ styles.boxContainer }>
-                        <Box number={number} style={{ width: boxSize, height: boxSize }} onClickBox={onClickBox}></Box>
+                        <Box number={number} style={{ width: boxSize, height: boxSize }} onClickBox={onClickBox} animated={true}></Box>
                     </View>
                 ))
             }

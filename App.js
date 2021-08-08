@@ -1,40 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { StatusBar, View, Dimensions } from 'react-native';
-import Header from './src/components/Header';
-import Body from './src/components/Body'
-import Footer from './src/components/Footer'
-
-import createBoxes from './src/js/createBoxes';
-
-const window = Dimensions.get("window");
+import React, { useState } from 'react'
+import MainMenu from './src/components/MainMenu/MainMenu'
+import Attention from './src/components/Attention/Attention'
+import Pause from './src/components/Pause/Pause'
+import { StatusBar } from 'react-native'
 
 const App = () => {
-    let [displaySize, setDisplaySize] = useState({ h: window.height, w: window.width })
-    let [boxes, setBoxes] = useState(createBoxes(9, 20))
-    let [result, setResult] = useState({ message: '', combo: 0 })
-
-    useEffect(() => {
-        const subscription = Dimensions.addEventListener("change", ({ window }) => {
-            setDisplaySize({ h: window.height, w: window.width })
-        })
-        return () => subscription?.remove()
-    })
-
-    const onClickBox = (number) => {
-        if(number === boxes.target)
-            setResult((prevState) => ({ message: 'Hit', combo: prevState.combo + 1}))
-        else
-            setResult({ message: 'Loose', combo: 0 })
-        setBoxes(createBoxes(9, 20))
-    }
-
+    const [game, setGame] = useState(null)
+    const [pause, setPause] = useState(false)
     return (
-        <View style={{ height: '100%', backgroundColor: '#ffcc66' }}>
-            <StatusBar hidden={true}></StatusBar>
-            <Header number={boxes.target}></Header>
-            <Body display={displaySize} numbers={boxes.boxes} onClickBox={onClickBox}></Body>
-            <Footer result={result}></Footer>
-        </View>
+        <>
+            <StatusBar hidden={true} />
+            { game === null ? <MainMenu setGame={setGame}/> : <Attention setPause={setPause} /> }
+            { pause ? <Pause setPause={setPause} setGame={setGame}/> : null }
+        </>
     )
 }
 
