@@ -2,7 +2,7 @@ import randomInt from "./randomInt"
 
 const createBoxes = (length, maxNumber) => {
     const target = randomInt(maxNumber)
-    const posTarget = randomInt(length)
+    const posTarget = randomInt(length-1)
     let boxes = [], i = 0
     while(i < length) {
         let newItem = randomInt(maxNumber)

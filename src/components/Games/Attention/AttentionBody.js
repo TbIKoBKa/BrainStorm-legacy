@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
+
+import Body from '../Body'
 import Box from './Box'
 
-const Body = ({ display, numbers, onClickBox }) => {
+const AttentionBody = ({ display, numbers, onClickBox }) => {
     let [boxSize, setBoxSize] = useState(0);
 
     useEffect(() => {
@@ -14,7 +16,7 @@ const Body = ({ display, numbers, onClickBox }) => {
     }, [display.height])
 
     return (
-        <View style={ styles.body }>
+        <Body>
             {
                 numbers.map((number, index) => (
                     <View key={index} style={ styles.boxContainer }>
@@ -22,17 +24,11 @@ const Body = ({ display, numbers, onClickBox }) => {
                     </View>
                 ))
             }
-        </View>
+        </Body>
     )
 }
 
 const styles = StyleSheet.create({
-    body: {
-        paddingTop: 30,
-        flexDirection: "row",
-        justifyContent: "center",
-        flexWrap: "wrap",
-    },
     boxContainer: {
         width: '33%',
         alignItems: "center",
@@ -40,4 +36,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Body
+export default AttentionBody

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, View, Dimensions, StyleSheet } from 'react-native';
-import Header from './Header'
-import Body from './Body'
-import Footer from './Footer'
+import { Dimensions } from 'react-native';
 
-import createBoxes from '../../js/createBoxes';
+import Game from '../Game'
+import AttentionHeader from './AttentionHeader'
+import AttentionBody from './AttentionBody'
+import AttentionFooter from './AttentionFooter'
+
+import createBoxes from '../../../js/createBoxes'
 
 const window = Dimensions.get("window");
 
@@ -29,20 +31,12 @@ const Attention = ({ setPause }) => {
     }
 
     return (
-        <View style={styles.attention}>
-            <StatusBar hidden={true} />
-            <Header number={boxes.target} setPause={setPause} />
-            <Body display={displaySize} numbers={boxes.boxes} onClickBox={onClickBox} />
-            <Footer result={result} />
-        </View>
+        <Game>
+            <AttentionHeader number={boxes.target} setPause={setPause} />
+            <AttentionBody display={displaySize} numbers={boxes.boxes} onClickBox={onClickBox} />
+            <AttentionFooter result={result} />
+        </Game>
     )
 }
-
-const styles = StyleSheet.create({
-    attention: {
-        flex: 1,
-        backgroundColor: '#4dd2ff'
-    }
-})
 
 export default Attention

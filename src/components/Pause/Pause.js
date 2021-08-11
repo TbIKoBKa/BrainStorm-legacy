@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     modal: {
         justifyContent: "center",
         alignItems: "center",
-        width: '80%',
+        width: '90%',
         borderRadius: 36,
         borderWidth: 8,
         borderColor: '#00aaff',

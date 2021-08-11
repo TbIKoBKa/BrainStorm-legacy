@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StatusBar, StyleSheet, TouchableHighlight, View } from 'react-native'
 import MyText from '../Text'
 
 import AnimatedLogo from './AnimatedLogo'
 
 const MainMenu = ({ setGame }) => {
+    const [gamesListVisible, setGamesListVisible] = useState(false)
+
+    const onGameSelect = (game) => {
+        setGame(game),
+        setGamesListVisible(false)
+    }
+
     return (
         <View style={styles.main_menu}>
             <StatusBar hidden={true} />
@@ -13,9 +20,26 @@ const MainMenu = ({ setGame }) => {
             </View>
             <AnimatedLogo />
             <View style={styles.controls}>
-                <TouchableHighlight underlayColor="#00aaff" style={styles.button} onPress={() => {setGame(0)}}>
-                    <MyText>Play</MyText>
-                </TouchableHighlight>
+                {
+                    gamesListVisible ?
+                    <>
+                        <TouchableHighlight underlayColor="#00aaff" style={styles.button} onPress={() => {onGameSelect(0)}}>
+                            <MyText>Attention</MyText>
+                        </TouchableHighlight>
+                        <TouchableHighlight underlayColor="#00aaff" style={styles.button} onPress={() => {onGameSelect(1)}}>
+                            <MyText>Caps</MyText>
+                        </TouchableHighlight>
+                        <TouchableHighlight underlayColor="#ff1a1a" style={[styles.button, styles.redButton]} onPress={() => {setGamesListVisible(false)}}>
+                            <MyText>Back</MyText>
+                        </TouchableHighlight>
+                    </> :
+                    <>
+                        <TouchableHighlight underlayColor="#00aaff" style={styles.button} onPress={() => {setGamesListVisible(true)}}>
+                            <MyText>Play</MyText>
+                        </TouchableHighlight>
+                    </>
+                }
+                
             </View>
         </View>
     )
@@ -38,11 +62,17 @@ const styles = StyleSheet.create({
         marginTop: 40
     },
     button: {
-        paddingHorizontal: 80,
+        alignItems: "center",
+        paddingHorizontal: 40,
         paddingVertical: 5,
+        marginBottom: 10,
         borderColor: '#00aaff',
         borderWidth: 3,
         borderRadius: 36,
+    },
+    redButton: {
+        borderWidth: 0,
+        backgroundColor: "#ff1a1a"
     }
 })
 

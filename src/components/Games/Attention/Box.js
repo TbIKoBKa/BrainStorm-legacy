@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { StyleSheet, TouchableHighlight, Animated } from 'react-native'
-import MyText from '../Text'
+import MyText from '../../Text'
 
 const AnimatedTouchableHighlight = Animated.createAnimatedComponent(TouchableHighlight)
 
