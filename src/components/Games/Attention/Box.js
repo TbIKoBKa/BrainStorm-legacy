@@ -5,16 +5,17 @@ import MyText from '../../Text'
 const AnimatedTouchableHighlight = Animated.createAnimatedComponent(TouchableHighlight)
 
 const Box = ({ number, style=null, onClickBox, animated }) => {
-    const scale = useRef(new Animated.Value(0.3)).current
+    const scale = useRef(new Animated.Value(1)).current
     
-    useEffect(() => {
-        Animated.timing(scale, {toValue: 1, duration: 150, useNativeDriver: false}).start()
-    })
-
-    const onClick = (number) => {
+    const animationScale = (toValue = 1) => Animated.timing(scale, {toValue: toValue, duration: 150, useNativeDriver: false})
+    
+    const onClick = async (number) => {
         if(animated) {
             onClickBox(number)
-            scale.setValue(0.3)
+            Animated.sequence([
+                animationScale(0.6),
+                animationScale(1)
+            ]).start()
         }
     }
 

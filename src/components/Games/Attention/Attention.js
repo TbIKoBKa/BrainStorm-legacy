@@ -11,16 +11,9 @@ import createBoxes from '../../../js/createBoxes'
 const window = Dimensions.get("window");
 
 const Attention = ({ setPause }) => {
-    let [displaySize, setDisplaySize] = useState({ h: window.height, w: window.width })
     let [boxes, setBoxes] = useState(createBoxes(9, 20))
     let [result, setResult] = useState({ message: '', combo: 0 })
-
-    useEffect(() => {
-        const subscription = Dimensions.addEventListener("change", ({ window }) => {
-            setDisplaySize({ h: window.height, w: window.width })
-        })
-        return () => subscription?.remove()
-    })
+    let displaySize = { h: window.height, w: window.width }
 
     const onClickBox = (number) => {
         if(number === boxes.target)

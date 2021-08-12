@@ -4,16 +4,16 @@ import { StyleSheet, View } from 'react-native'
 import Body from '../Body'
 import Box from './Box'
 
-const AttentionBody = ({ display, numbers, onClickBox }) => {
-    let [boxSize, setBoxSize] = useState(0);
+const calculateBoxSize = (displaySize) => {
+    let newBoxSize = Math.round((displaySize.h - 150 - 30 - 30 - 100) / 3)
+    while((displaySize.w - newBoxSize * 3) < 40) {
+        newBoxSize -= 1
+    }
+    return newBoxSize
+}
 
-    useEffect(() => {
-        let newBoxSize = Math.round((display.h - 150 - 30 - 30 - 100) / 3)
-        while((display.w - newBoxSize * 3) < 40) {
-            newBoxSize -= 1
-        }
-        setBoxSize(newBoxSize)
-    }, [display.height])
+const AttentionBody = ({ display, numbers, onClickBox }) => {
+    let boxSize = calculateBoxSize(display);
 
     return (
         <Body>

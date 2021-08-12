@@ -18,7 +18,6 @@ const CapsBody = ({ correctCap, isMixing, setIsMixing, isAnimating, setIsAnimati
 
     const getMixiesCaps = (nMix) => {
         let newMixies = [caps]
-        console.log(newMixies)
 
         for(let i = 1; i < nMix; i++) {
             let cap1 = randomInt(2), cap2 = randomInt(2)
