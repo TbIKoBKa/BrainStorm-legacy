@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Animated, StyleSheet, TouchableHighlight, View } from 'react-native'
+import { Animated, StyleSheet, TouchableHighlight } from 'react-native'
 
 import Body from '../Body'
 import CapsContainer from './CapsContainer'

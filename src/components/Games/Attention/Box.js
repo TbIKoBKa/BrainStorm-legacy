@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { StyleSheet, TouchableHighlight, Animated } from 'react-native'
 import MyText from '../../Text'
 
